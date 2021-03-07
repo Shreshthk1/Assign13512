@@ -2,22 +2,36 @@
     <head>
         <title>Comp 3512 Assign1</title>
         <script src = assign1.js></script>
-        <link rel="stylesheet" src = "assign1.css">
+        <link rel="stylesheet" href = "assign1.css">
     </head>
 
-    <header>
-        <label id="credits">Credits</label>
-    </header>
+    
 
     <body>
-        <div id = mainCompanies>
-            <div id = list>
-                <label>List of Companies</label>
-
-            </div>
+        <div id = Credits>
+            <label id = "creditsLabel">Credits</label>
+            <div id = information> Shreshth Kumar, Comp 3512,  </div> 
         </div>
+        <div id = companiesList>
+            <label>List of Companies</label>
+            <div id = filter> Filter: <input id = companyName> </div> 
+            <button id = "go">Go</button><button id = "clear">Clear</button>  
+            <div id = loadingAnimation class="lds-dual-ring"></div>
+            <div id="companyLoader" class="lds-ring"><div></div><div></div><div></div><div></div></div>
+        </div>
+        
         <div id = aboutCompany>
-            <div></div>
+            <label>Company Information</label>
+            <div id = companyInformation></div>
+        </div>
+        <div id="map">
+            <label>Map</label>
+        </div>
+        <div id="stockData">
+            <label>Stock Data</label><button id="viewCharts">View Charts</button>
+        </div>
+        <div id="stockStats">
+
         </div>
     </body>
 </html>

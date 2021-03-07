@@ -1,0 +1,137 @@
+:root {
+    --greyBackgorund: #D9D9D9;  
+    --buttonBackgorund: #4472C4;
+}
+#information {
+    display: none;
+    font-weight: normal;
+    font-size: 16px;
+}
+#creditsLabel:hover + #information{
+   display: block;
+}
+
+body {
+    padding-top: 15px;
+    display: grid;
+    grid-template-columns: 4;
+    grid-template-rows: 3;
+    grid-gap: 5px;
+}
+
+#credits {
+    grid-column: 1/ span 3;
+    grid-row: 1;
+    background-color: var(--greyBackgorund);
+    padding: 15px 0px 15px 15px;
+    font-weight: bolder;
+    font-size: 25px;
+    font-family: Calibri;
+} 
+#companiesList {
+    font-family: Calibri;
+    padding-bottom: 100px;
+    width: 100%;
+    grid-column: 1;
+    grid-row: 2/ span 2;
+    background-color: var(--greyBackgorund);
+    font-weight: bolder;
+    font-size: 25px;
+}
+#companiesList label{
+    margin-left: 5% ;
+}
+#companyLoader {
+    overflow-y: scroll;
+}
+#filter {
+    font-size: 16px;
+    font-weight: normal;
+    padding-left: 2%;
+}
+#go {
+    margin-top: 3px;
+    margin-left: 20%;
+    background-color: var(--buttonBackgorund);
+    color: white;
+    border-radius: 5px;
+    box-shadow: none;
+}
+#clear {
+    background-color: var(--buttonBackgorund);
+    color: white;
+    border-radius: 5px;
+    box-shadow: none;
+}
+
+#aboutCompany{
+    font-family: Calibri;
+    background-color: var(--greyBackgorund);
+    grid-column: 2;
+    grid-row: 2;
+    font-weight: bolder;
+    font-size: 25px;
+    padding-left: 20%;
+    padding-bottom: 300px;
+}
+#aboutCompany label{
+    margin-left: -15%;
+}
+
+#map {
+    font-family: Calibri;
+    background-color: var(--greyBackgorund);
+    grid-column: 2;
+    grid-row: 3;
+    font-weight: bolder;
+    font-size: 25px;
+    padding-bottom: 300px;
+}
+#map label{
+    margin-left: 5% ;
+}
+
+#stockData{
+    font-family: Calibri;
+    background-color: var(--greyBackgorund);
+    grid-column: 3;
+    grid-row: 2/ span 2;
+    font-weight: bolder;
+    font-size: 25px;
+}
+#viewCharts{
+    background-color: var(--buttonBackgorund);
+    color: white;
+    border-radius: 5px;
+    box-shadow: none;
+    margin-left: 15%;
+}
+#stockData label{
+    margin-left: 10% ;
+}
+
+/* CSS Loader source: https://loading.io/css/ */
+.lds-dual-ring {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+  }
+.lds-dual-ring:after {
+    content: " ";
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border-radius: 50%;
+    border: 6px solid #fff;
+    border-color: #fff transparent #fff transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+  }
+@keyframes lds-dual-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+}
