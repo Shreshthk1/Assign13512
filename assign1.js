@@ -20,8 +20,6 @@ document.addEventListener('DOMContentLoaded', function() {
         JSON.stringify(fetchedList));
     }
 
-
-    
     if (fetchedList.length == 0) {
         //fetch API;
         document.querySelector("#loadingAnimation").style.display ="block";
@@ -40,6 +38,8 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log("This list already exists" + fetchedList)
     }
     
+
+    //Base Idea for filtering found from https://codepen.io/webkiev/pen/MWYZRaq
 let input = document.querySelector('#companiesList #filter'); 
     input.addEventListener('change', e => {
         let filteredList = [];
@@ -439,22 +439,23 @@ let input = document.querySelector('#companiesList #filter');
         showCandleChart();
         showLineGraph();
     }
-
+    //Code for bar chart was use from Echart  https://echarts.apache.org/en/tutorial.html#Get%20Started%20with%20ECharts%20in%205%20minutes
     function showBarChart(arr2017, arr2018, arr2019) {
         var mychart = echarts.init(document.querySelector('#charts #main'));
         // specify chart configuration item and data
         let option = {
             title: {
-                text: 'Bar Graph'
+                text: 'Financial Graph'
             },
             tooltip: {},
             legend: {
                 data:["2017", "2018", "2019"]
             },
             xAxis: {
+                name: "Financials",
                 data: ["Revenue","Earnings","Assets","Liabilities"]
             },
-            yAxis: {},
+            yAxis: {name: "Dollars ($)"},
             series: [{
                 name: '2017',
                 type: 'bar', 
@@ -474,6 +475,8 @@ let input = document.querySelector('#companiesList #filter');
         mychart.setOption(option);
     }
     
+    //Options found from https://echarts.apache.org/en/option.html#title
+    //Code is based off of bar chart but most changes were made by me
     function showCandleChart(){
         var mychart = echarts.init(document.querySelector('#charts #main2'));
         // specify chart configuration item and data
@@ -526,22 +529,29 @@ let input = document.querySelector('#companiesList #filter');
             series: [{
                 name: "Open",
                 type: 'k', 
-                data: [ [openmin[0] ,  openAvg -1, openAvg ,openMax] ,
-                        [closemin[0] - 3, closemin[0] - 2, closemin[0] - 1, closemin[0]]]
+                data: [[openmin[0] - 3, openmin[0] - 2, openmin[0] - 1, openmin[0]],
+                        [openMax -3, openMax -2, openMax - 1, openMax],
+                        [openAvg - 3, openAvg - 2, openAvg - 1, openAvg]]
+            }, {
+                name: "Close",
+                type: 'k', 
+                data: [[closemin[0] - 3, closemin[0] - 2, closemin[0] - 1, closemin[0]],
+                        [closeMax -3, closeMax -2, closeMax - 1, closeMax],
+                        [closeAvg - 3, closeAvg - 2, closeAvg - 1, closeAvg]] 
             }]
         };
 
         // use configuration item and data specified to show chart
         mychart.setOption(option);      
     } 
-
+    //Code is based off of bar chart but most changes were made by me
     function showLineGraph() {
         var mychart = echarts.init(document.querySelector('#charts #main3'));
         // specify chart configuration item and data
         let dates = [];
         let count= 0;
         lastAccessesdStock.forEach(comapany => {
-            dates.push(count);
+            dates.push(comapany.date);
             count+=1;
         })
         console.log(dates);
@@ -563,26 +573,29 @@ let input = document.querySelector('#companiesList #filter');
             },
             tooltip: {},
             xAxis: {
-                data: [dates]
+                name: "Date",
+                type: 'category',
+                data: dates
             },
-            yAxis: {type:'value'}
-            ,
+            yAxis: {name:"Close Amount", type:'value' },
+            
             series: [{
+                
                 name: 'Close',
                 type: 'line',
-                data: [fillLine(close)]
+                data: close
+
+            }, {
+                name: "Volume",
+                type: "line",
+                data: volume
             }]
         };
 
         // use configuration item and data specified to show chart
         option && mychart.setOption(option);
     }
-
-    function fillLine(close) {
-        close.forEach(num => {
-            return num;
-        })
-    }
+    
 });
 //This code is used from lab 10 in order to get the map to work 
 var map;
