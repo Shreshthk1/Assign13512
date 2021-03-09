@@ -4,8 +4,8 @@
         <script src = assign1.js></script>
         <link rel="stylesheet" href = "assign1.css">
         
-        <!-- Chart.js import -->
-        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+        <!-- Echart.js import -->
+        <script src="https://cdn.jsdelivr.net/npm/echarts@5.0.2/dist/echarts.min.js"></script>
     </head>
     <body>
         <div id = mainContent>
@@ -84,9 +84,10 @@
             
                 <div id="charts">
                     <label>Charts</label>
-                    <canvas id = chart1></canvas>
-                    <canvas id = chart2></canvas>
-                    <canvas id = chart3></canvas>
+                    <div id="main" style="width:700px; height: 200px; margin-left: 25px;" class = chart1></div>
+                    <div id="main2" style="width:600px; height: 200px; padding-right: 30px ;" class = chart2></div>
+                    <div id="main3" style="width:1200px; height: 400px; margin-left: 25px;" class = chart3></div>
+
                 </div>
                 <div id="nameSymbol">
                     <label>Name+Symbol</label> <button id = speak>Speak</button><button id = closePage2>Close</button>

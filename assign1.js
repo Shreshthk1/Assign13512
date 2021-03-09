@@ -6,8 +6,6 @@ document.addEventListener('DOMContentLoaded', function() {
     let map = document.querySelector('#companyMap #map');
     console.log(map.style);
     map.style.display = "none";
-   // document.querySelector("#loadingAnimation2").style.display ="none";
-    //setting timeout
     let credits = document.querySelector('#Credits #information');
     
 
@@ -302,6 +300,7 @@ let input = document.querySelector('#companiesList #filter');
             volumemin.push(Number(n.volume))
             volumemin.sort(function(a,b){return a -b});
         })
+
         let open = document.createElement('td');
         open.textContent = openmin[0];
         let close = document.createElement('td');
@@ -401,9 +400,10 @@ let input = document.querySelector('#companiesList #filter');
             info2019.push(currentCompany.financials.assets[0]);
             info2019.push(currentCompany.financials.liabilities[0]);
             
+            chartHandler(info2017, info2018, info2019);
             populateFinancialTable(info2017, "#year1");
-           populateFinancialTable(info2018, "#year2");
-           populateFinancialTable(info2019, "#year3");
+            populateFinancialTable(info2018, "#year2");
+            populateFinancialTable(info2019, "#year3");
         }        
     }
 
@@ -427,6 +427,162 @@ let input = document.querySelector('#companiesList #filter');
         
     }
 
+    function chartHandler(arr1, arr2, arr3) {
+        let arr2017 = [];
+        arr1.forEach(c => {arr2017.push(Number(c))});
+        let arr2018 = [];
+        arr2.forEach(c => {arr2018.push(Number(c))});
+        let arr2019 = [];
+        arr3.forEach(c => {arr2019.push(Number(c))}); 
+
+        showBarChart(arr2017, arr2018, arr2019);
+        showCandleChart();
+        showLineGraph();
+    }
+
+    function showBarChart(arr2017, arr2018, arr2019) {
+        var mychart = echarts.init(document.querySelector('#charts #main'));
+        // specify chart configuration item and data
+        let option = {
+            title: {
+                text: 'Bar Graph'
+            },
+            tooltip: {},
+            legend: {
+                data:["2017", "2018", "2019"]
+            },
+            xAxis: {
+                data: ["Revenue","Earnings","Assets","Liabilities"]
+            },
+            yAxis: {},
+            series: [{
+                name: '2017',
+                type: 'bar', 
+                data: [arr2017[1], arr2017[2], arr2017[3], arr2017[4]],
+            }, {
+                name: '2018',
+                type: 'bar',
+                data: [arr2018[1], arr2018[2], arr2018[3], arr2018[4]]
+            }, {
+                name: '2019',
+                type: 'bar',
+                data: [arr2019[1], arr2019[2], arr2019[3], arr2019[4]]
+            }]
+        };
+
+        // use configuration item and data specified to show chart
+        mychart.setOption(option);
+    }
+    
+    function showCandleChart(){
+        var mychart = echarts.init(document.querySelector('#charts #main2'));
+        // specify chart configuration item and data
+        let openmin = [];
+        let closemin = [];
+        let lowmin = [];
+        let highmin = [];
+        let volumemin = [];
+        
+        let openMax = openmin[openmin.length -1];
+        let closeMax = closemin[closemin.length -1];
+        let highMax = highmin[highmin.length -1];
+        let lowMax = lowmin[lowmin.length -1];
+        let openAvg = 0;
+        let closeAvg = 0;
+        let highAvg = 0;
+        let lowAvg = 0;
+        lastAccessesdStock.forEach(n => {
+            openmin.push(Number(n.open))
+            openAvg+=n.open;
+            openmin.sort(function(a,b){return a -b});
+            closemin.push(Number(n.close))
+            closeAvg+=n.close;
+            closemin.sort(function(a,b){return a -b});
+            lowmin.push(Number(n.low))
+            lowAvg+=n.low;
+            lowmin.sort(function(a,b){return a -b});
+            highmin.push(Number(n.high))
+            highAvg+=n.high;
+            highmin.sort(function(a,b){return a -b});
+            volumemin.push(Number(n.volume))
+            volumemin.sort(function(a,b){return a -b});
+        });
+
+        
+
+        console.log(openmin[0]);
+
+        let option = {
+            title: {
+                text: 'Candle Graph'
+            },
+            legend: {
+                data:["Open", "Close", "High", "Low"]
+            },
+            xAxis: {
+                data: ["Minimum","Maximum","Average",]
+            },
+            yAxis: {},
+            series: [{
+                name: "Open",
+                type: 'k', 
+                data: [ [openmin[0] ,  openAvg -1, openAvg ,openMax] ,
+                        [closemin[0] - 3, closemin[0] - 2, closemin[0] - 1, closemin[0]]]
+            }]
+        };
+
+        // use configuration item and data specified to show chart
+        mychart.setOption(option);      
+    } 
+
+    function showLineGraph() {
+        var mychart = echarts.init(document.querySelector('#charts #main3'));
+        // specify chart configuration item and data
+        let dates = [];
+        let count= 0;
+        lastAccessesdStock.forEach(comapany => {
+            dates.push(count);
+            count+=1;
+        })
+        console.log(dates);
+
+        let volume = [] 
+        lastAccessesdStock.forEach(o => {
+            volume.push(o.volume);
+        });
+        console.log(open);
+        let close = [] 
+        lastAccessesdStock.forEach(o => {
+            close.push(o.close);
+        });
+        console.log(close)
+
+        let option = {
+            title: {
+                text: 'Line Graph'
+            },
+            tooltip: {},
+            xAxis: {
+                data: [dates]
+            },
+            yAxis: {type:'value'}
+            ,
+            series: [{
+                name: 'Close',
+                type: 'line',
+                data: [fillLine(close)]
+            }]
+        };
+
+        // use configuration item and data specified to show chart
+        option && mychart.setOption(option);
+    }
+
+    function fillLine(close) {
+        close.forEach(num => {
+            return num;
+        })
+    }
 });
 //This code is used from lab 10 in order to get the map to work 
 var map;
