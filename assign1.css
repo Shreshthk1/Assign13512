@@ -2,6 +2,9 @@
     --greyBackgorund: #D9D9D9;  
     --buttonBackgorund: #4472C4;
 }
+html {
+    max-height: 900px;
+}
 #information {
     display: none;
     font-weight: normal;
@@ -10,16 +13,26 @@
 #creditsLabel:hover + #information{
    display: block;
 }
+ li {
+    list-style: none;
+    font-size: 16px;
+    font-weight: normal;
+ }
 
-body {
+ li:hover{
+     cursor: pointer;
+     color: var(--buttonBackgorund)
+ }
+#mainContent {
     padding-top: 15px;
     display: grid;
     grid-template-columns: 4;
     grid-template-rows: 3;
     grid-gap: 5px;
+    height: 600px !important;
 }
 
-#credits {
+#Credits {
     grid-column: 1/ span 3;
     grid-row: 1;
     background-color: var(--greyBackgorund);
@@ -30,19 +43,25 @@ body {
 } 
 #companiesList {
     font-family: Calibri;
-    padding-bottom: 100px;
+    padding-bottom: 0px;
     width: 100%;
     grid-column: 1;
     grid-row: 2/ span 2;
     background-color: var(--greyBackgorund);
     font-weight: bolder;
     font-size: 25px;
+    height: 900px !important;
+    
 }
 #companiesList label{
     margin-left: 5% ;
 }
-#companyLoader {
+#companyNames {
+    margin-top: 15px;
     overflow-y: scroll;
+    
+    margin-bottom: 0px;
+    height: 800px !important;
 }
 #filter {
     font-size: 16px;
@@ -56,12 +75,14 @@ body {
     color: white;
     border-radius: 5px;
     box-shadow: none;
+    cursor: pointer;
 }
 #clear {
     background-color: var(--buttonBackgorund);
     color: white;
     border-radius: 5px;
     box-shadow: none;
+    cursor: pointer;
 }
 
 #aboutCompany{
@@ -71,25 +92,39 @@ body {
     grid-row: 2;
     font-weight: bolder;
     font-size: 25px;
-    padding-left: 20%;
-    padding-bottom: 300px;
+    padding-bottom: 50px;
+    height: 400px !important;
+    
 }
 #aboutCompany label{
-    margin-left: -15%;
+    margin-left: 15%;
 }
 
-#map {
+#companyInformation p {
+    grid-row: 1;
+    grid-column: 2;
+    font-weight: normal;
+    font-size: 16px;
+    max-width: 500px;
+}
+#companyMap {
+    margin-top: -50px;
     font-family: Calibri;
     background-color: var(--greyBackgorund);
     grid-column: 2;
     grid-row: 3;
     font-weight: bolder;
     font-size: 25px;
-    padding-bottom: 300px;
+    height: 400px !important;
+    width: 800px;
 }
-#map label{
+#companyMap label{
     margin-left: 5% ;
 }
+#map {
+    height: 400px;
+} 
+   
 
 #stockData{
     font-family: Calibri;
@@ -98,6 +133,11 @@ body {
     grid-row: 2/ span 2;
     font-weight: bolder;
     font-size: 25px;
+    /* padding-left: 200px; */
+}
+#tableContainer {
+    overflow-y: scroll;  
+    height: 700px; 
 }
 #viewCharts{
     background-color: var(--buttonBackgorund);
@@ -105,11 +145,34 @@ body {
     border-radius: 5px;
     box-shadow: none;
     margin-left: 15%;
-}
-#stockData label{
-    margin-left: 10% ;
+    cursor: pointer;
 }
 
+#StockTable {
+    height: 700px; 
+    font-family: Calibri;
+    /* margin-left: 15%; */
+    font-size: 25px;
+
+}
+#StockTable, td{
+    font-size: 10px;
+
+    border-style: 1px solid black;
+}
+#stockData, #StockTable, #volume{
+    padding-right: 0px !important;
+}
+#StockTable, th {
+    font-size: 16px;
+    padding-right: 70px;
+}
+#StockAverage{
+    margin-top: 5px;
+}
+
+
+/* Used from lab 10 */
 /* CSS Loader source: https://loading.io/css/ */
 .lds-dual-ring {
     display: inline-block;
@@ -134,4 +197,130 @@ body {
     100% {
       transform: rotate(360deg);
     }
+}
+
+
+
+/* Page 2 */;
+#page2 {
+    display: grid;
+    grid-template-columns: 4;
+    grid-template-rows: 4;
+    grid-gap: 26px;
+}
+#Credits2 {
+    grid-column: 1/ span 3;
+    grid-row: 1;
+    background-color: var(--greyBackgorund);
+    padding: 15px 0px 15px 15px;
+    font-weight: bolder;
+    font-size: 25px;
+    font-family: Calibri;
+}
+#information2 {
+    display: none;
+    font-weight: normal;
+    font-size: 16px;
+}
+
+#creditsLabel2:hover + #information2 {
+    display: block;
+}
+#charts {
+    display: grid;
+    grid-template-rows: 3;
+    grid-template-columns: 2;
+    grid-column: 1/3;
+    grid-row: 2/4;
+    background-color: var(--greyBackgorund);
+    height: 600px;
+    border: solid white;
+    
+}
+#chart1 {
+    grid-column: 1;
+    grid-row: 2;
+    background-color: red;
+}
+
+#chart2 {
+    grid-column: 2;
+    grid-row: 2;
+    background-color: saddlebrown;
+}
+#chart3 {
+    grid-column: 1/3;
+    grid-row: 3;
+    background-color: slateblue;
+}
+#charts label{
+    grid-row: 1;
+    grid-column: 1/3;
+    font-weight: bolder;
+    font-size: 25px;
+    font-family: Calibri;
+    padding: 15px 0px 15px 15px;
+}
+#nameSymbol{
+    grid-column: 3;
+    grid-row: 2;
+    background-color: var(--greyBackgorund);   
+    border: solid white;
+    margin-bottom: -15%;
+
+}
+#nameSymbol label{
+    font-weight: bolder;
+    font-size: 25px;
+    font-family: Calibri;
+    padding: 15px 0px 15px 15px;
+}
+#financials{
+    /* padding-top: 250px; */
+    grid-column: 3;
+    grid-row: 3;
+    background-color: var(--greyBackgorund);
+    border: solid white;
+}
+#financials label{
+    
+    font-weight: bolder;
+    font-size: 25px;
+    font-family: Calibri;
+    padding: 15px 0px 15px 15px;
+    
+}
+#speak {
+    margin-top: 3px;
+    margin-left: 20%;
+    background-color: var(--buttonBackgorund);
+    color: white;
+    border-radius: 5px;
+    box-shadow: none;
+    cursor: pointer;
+}
+#description {
+    width: 400px;
+    padding-left: 15px
+}
+#closePage2 {
+    margin-top: 3px;
+    margin-left: 20%;
+    background-color: var(--buttonBackgorund);
+    color: white;
+    border-radius: 5px;
+    box-shadow: none;
+    cursor: pointer;
+}
+#financialTable {
+ 
+    width: 100%;
+    height: 90%;
+}
+#financialTable th{
+    border: solid black;
+}
+#financialTable td{
+    border: solid black;
+    font-size: 18px;
 }

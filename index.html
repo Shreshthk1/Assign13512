@@ -3,35 +3,131 @@
         <title>Comp 3512 Assign1</title>
         <script src = assign1.js></script>
         <link rel="stylesheet" href = "assign1.css">
+        
+        <!-- Chart.js import -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
     </head>
-
-    
-
     <body>
+        <div id = mainContent>
+
+        
         <div id = Credits>
             <label id = "creditsLabel">Credits</label>
-            <div id = information> Shreshth Kumar, Comp 3512,  </div> 
+            <div id = information> Shreshth Kumar, Comp 3512, References: <br> Number Formatter found from https://www.samanthaming.com/tidbits/30-how-to-format-currency-in-es6/  <br>
+                Google Map CSS:
+                #map { <br>
+                    height: 400px; <br>
+                } <br></div> 
         </div>
         <div id = companiesList>
             <label>List of Companies</label>
             <div id = filter> Filter: <input id = companyName> </div> 
             <button id = "go">Go</button><button id = "clear">Clear</button>  
             <div id = loadingAnimation class="lds-dual-ring"></div>
-            <div id="companyLoader" class="lds-ring"><div></div><div></div><div></div><div></div></div>
+            <div id="companyNames"></div>
         </div>
         
         <div id = aboutCompany>
             <label>Company Information</label>
             <div id = companyInformation></div>
         </div>
-        <div id="map">
+        <div id="companyMap">
             <label>Map</label>
+            <div id = map><!-- Used Google Maps Api from Google cloud platform -->
+        </div>
         </div>
         <div id="stockData">
             <label>Stock Data</label><button id="viewCharts">View Charts</button>
-        </div>
-        <div id="stockStats">
+            <div id="tableContainer">
+               <table id = "StockTable">
+                <thead>
+                    <th id = date>Date</th>
+                    <th id = open>Open</th>
+                    <th id = close>Close</th>
+                    <th id = low>Low</th>
+                    <th id = high>High</th>
+                    <th id = volume>Volume</th>
+                </thead>
+                <tbody id = test>
+                </tbody>
+            </table> 
+            </div>
+             
+            <div id="StockAverage">
+            <table>
+                <tr id="average">
+                    <th>Average</th>
+                    
+                </tr>
+                <tr id = min>
+                    <th>Miniumum</th>
 
+                </tr>
+                <tr id = max>
+                    <th>Maximum</th>
+
+                </tr>
+            </table>
+        </div>       
         </div>
-    </body>
+        </div>
+        <div id="page2">
+            <div id = Credits2>
+                <label id = "creditsLabel2">Credits</label>
+                <div id = information2> Shreshth Kumar, Comp 3512, References: <br> Number Formatter found from https://www.samanthaming.com/tidbits/30-how-to-format-currency-in-es6/  <br>
+                    Google Map CSS:
+                    #map { <br>
+                        height: 400px; <br>
+                    } <br> 
+                </div> 
+            </div>
+            
+                <div id="charts">
+                    <label>Charts</label>
+                    <canvas id = chart1></canvas>
+                    <canvas id = chart2></canvas>
+                    <canvas id = chart3></canvas>
+                </div>
+                <div id="nameSymbol">
+                    <label>Name+Symbol</label> <button id = speak>Speak</button><button id = closePage2>Close</button>
+                    <p id = description> </p>
+
+                </div>
+                <div id="financials">
+                    <label>Financials</label>
+                    <br>
+                    <label id = financialMissing>Financial Information is not available for this company</label>
+                    <table id= financialTable>
+                        <thead>
+                            <th>-</th>
+                            <th>Revenue</th>
+                            <th>Earnings</th>
+                            <th>Assests</th>
+                            <th>Liabilities</th>
+                        </thead>
+                        <tbody id = years>
+                            <tr id="year1">
+                               <th> 2017 </th>
+                               
+                            </tr>
+                            <tr id="year2">
+                                <th> 2018 </th>
+                            </tr>
+                            <tr id="year3">
+                                <th> 2019 </th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div> 
+        </div>
+        
+        
+    <script
+
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIhS3grVZ35-K3_Jmx0WZZrvUBWC1UHN4&
+callback=initMap"></script> 
+
+    
+</body>
+    
 </html>
