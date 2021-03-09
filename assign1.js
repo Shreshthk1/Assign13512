@@ -376,9 +376,18 @@ let input = document.querySelector('#companiesList #filter');
         table.style.display = "table";
         table.style.width = "100%";
         table.style.height = "90%";
+        document.querySelector('#charts #main').style.display = "grid";
+        document.querySelector('#charts #main2').style.display = "grid";
+        document.querySelector('#charts #main3').style.display = "grid";
+
+
         if (currentCompany.financials == null) {
             document.querySelector('#financials #financialTable').style.display = "none";
-            missingInfo.style.display = "block"
+            missingInfo.style.display = "block";
+            document.querySelector('#charts #main').style.display = "none";
+            document.querySelector('#charts #main2').style.display = "none";
+            document.querySelector('#charts #main3').style.display = "none";
+            
         } else {
             console.log(currentCompany.financials);
             let info2017 = ["2017"];
